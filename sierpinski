@@ -1,0 +1,57 @@
+import turtle
+def triangle(sidelength, turt):
+    turt.forward(sidelength)
+    turt.left(120)
+    turt.forward(sidelength)
+    turt.left(120)
+    turt.forward(sidelength)
+    turt.left(120)
+
+def _serpinski(sidelength, turt, limit):
+
+    triangle(sidelength/2, turt)
+    if sidelength<limit:
+        return
+    # _____________
+
+    turt.right(60)
+    turt.forward(sidelength/4)
+    turt.left(60)
+    _serpinski(sidelength/2, turt, limit)
+    turt.right(60)
+    turt.forward(sidelength/4)
+    turt.left(120)
+    turt.forward(sidelength/2)
+    turt.left(60)
+    turt.forward(sidelength/4)
+    turt.right(120)
+    _serpinski(sidelength/2, turt, limit)
+    turt.penup()
+    turt.back(sidelength/2)
+    turt.pendown()
+    _serpinski(sidelength/2, turt, limit)
+    turt.right(60)
+    turt.forward(sidelength/4)
+    turt.left(60)
+
+
+
+def serpinski(sidelength, turt, limit):
+    triangle(sidelength, turt)
+    turt.forward(sidelength)
+    turt.left(120)
+    turt.forward(sidelength/2)
+    turt.left(60)
+    _serpinski(sidelength, turt, limit)
+
+if __name__ == '__main__':
+
+    wn = turtle.Screen()
+    bob = turtle.Turtle()
+    bob.hideturtle()
+    bob.penup()
+    bob.goto(-200, -200)
+    bob.pendown()
+    bob.speed(0)
+    serpinski(500, bob,15)
+    wn.exitonclick()
